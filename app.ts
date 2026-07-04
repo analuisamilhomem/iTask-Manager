@@ -13,22 +13,50 @@ class Tarefa{
 
     renderizar() {
         const li = document.createElement ('li');
-        li.innerHTML = `
-            <strong> ${this.nome} </strong>
-            `;
-    return li;
+
+        const checkbox = document.createElement ('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = this.concluida;
+
+        const nomeElemento = document.createElement ('strong')
+        nomeElemento.textContent = this.nome
+
+        const visual = () => {
+        nomeElemento.style.textDecoration = this.concluida ? 'line-through' : 'none';
+        nomeElemento.style.color = this.concluida ? 'green' : 'black';
+        };
+
+        visual(); 
+
+        checkbox.addEventListener('change', () => {
+        this.concluida = checkbox.checked;
+        visual(); 
+         });
+
+        li.appendChild(checkbox);
+        li.appendChild(nomeElemento);
+       
+     return li;
     }
 
  }
 
- const botao = document.getElementById('adicionar-botao') as HTMLButtonElement;
+ const botaoAdicionar = document.getElementById('botao-adicionar-tarefa') as HTMLButtonElement;
+ const botaoConcluir = document.getElementById('botao-concluir-tarefa') as HTMLButtonElement;
  const inputNome = document.getElementById('input-nome') as HTMLInputElement; 
  const nomeTarefa = inputNome.value;
  const inputDescricao = document.getElementById('input-descricao') as HTMLInputElement; 
  const descricaoTarefa = inputDescricao.value;
+ const adiconarTarefas = document.getElementById('formulario') as HTMLDivElement;
 
- botao.addEventListener ('click', () => {
+botaoAdicionar.addEventListener ('click', () => {
+   adiconarTarefas.classList.toggle('escondido');
+ })
+
+ botaoConcluir.addEventListener ('click', () => {
     const novaTarefa = new Tarefa (inputNome.value, inputDescricao.value);
     document.getElementById('lista')?. appendChild(novaTarefa.renderizar ())
  })
+ 
+ 
  

@@ -12,18 +12,36 @@ class Tarefa {
     }
     renderizar() {
         const li = document.createElement('li');
-        li.innerHTML = `
-            <strong> ${this.nome} </strong>
-            `;
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = this.concluida;
+        const nomeElemento = document.createElement('strong');
+        nomeElemento.textContent = this.nome;
+        const visual = () => {
+            nomeElemento.style.textDecoration = this.concluida ? 'line-through' : 'none';
+            nomeElemento.style.color = this.concluida ? 'green' : 'black';
+        };
+        visual();
+        checkbox.addEventListener('change', () => {
+            this.concluida = checkbox.checked;
+            visual();
+        });
+        li.appendChild(checkbox);
+        li.appendChild(nomeElemento);
         return li;
     }
 }
-const botao = document.getElementById('adicionar-botao');
+const botaoAdicionar = document.getElementById('botao-adicionar-tarefa');
+const botaoConcluir = document.getElementById('botao-concluir-tarefa');
 const inputNome = document.getElementById('input-nome');
 const nomeTarefa = inputNome.value;
 const inputDescricao = document.getElementById('input-descricao');
 const descricaoTarefa = inputDescricao.value;
-botao.addEventListener('click', () => {
+const adiconarTarefas = document.getElementById('formulario');
+botaoAdicionar.addEventListener('click', () => {
+    adiconarTarefas.classList.toggle('escondido');
+});
+botaoConcluir.addEventListener('click', () => {
     const novaTarefa = new Tarefa(inputNome.value, inputDescricao.value);
     document.getElementById('lista')?.appendChild(novaTarefa.renderizar());
 });
