@@ -5,20 +5,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
     <title>iTask Manager</title>
 </head>
 
 <body> 
-    <div class="container">
+
+    <h1> 
+        iTask Manager
+    </h1>
+
+    <div> 
+        <button id = "botao-adicionar-tarefa">+</button>
+    </div>
+
+    <div class="container escondido" id="formulario">
 
         <input type="text" id="input-nome" placeholde="Digite a tarefa:">
-        <input type="text" id="input-descricao" placeholde="Digite a descricao:">
-        <button id="adicionar-botao" >Adicionar</button>
-        <ul id="lista">Lista de Tarefas </ul>
+        <textarea type="text" id="input-descricao" placeholde="Digite a descricao:"> </textarea>
+        <button id="botao-concluir-tarefa" >Adicionar</button>
 
 
     </div>
+
+    <h2><ul id="lista">Lista de Tarefas </ul> </h2>
+     
 
 
 </body>
