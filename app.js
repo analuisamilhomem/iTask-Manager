@@ -17,9 +17,15 @@ class Tarefa {
         checkbox.checked = this.concluida;
         const nomeElemento = document.createElement('strong');
         nomeElemento.textContent = this.nome;
+        nomeElemento.classList.add('nome-tarefa');
+        const descricaoElemento = document.createElement('span');
+        descricaoElemento.textContent = this.descricao;
+        descricaoElemento.classList.add('descricao-tarefa');
+        const dataElemento = document.createElement('span');
+        dataElemento.textContent = this.dataDeCriacao.toLocaleDateString('pt-BR');
+        dataElemento.classList.add('data-tarefa');
         const visual = () => {
-            nomeElemento.style.textDecoration = this.concluida ? 'line-through' : 'none';
-            nomeElemento.style.color = this.concluida ? 'green' : 'black';
+            nomeElemento.classList.toggle('concluida', this.concluida);
         };
         visual();
         checkbox.addEventListener('change', () => {
@@ -28,6 +34,8 @@ class Tarefa {
         });
         li.appendChild(checkbox);
         li.appendChild(nomeElemento);
+        li.appendChild(descricaoElemento);
+        li.appendChild(dataElemento);
         return li;
     }
 }

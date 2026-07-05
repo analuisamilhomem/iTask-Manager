@@ -17,21 +17,30 @@
     </h1>
 
     <div> 
-        <button id = "botao-adicionar-tarefa">+</button>
+        <button id="botao-adicionar-tarefa">+</button>
     </div>
 
     <div class="container escondido" id="formulario">
 
-        <input type="text" id="input-nome" placeholde="Digite a tarefa:">
-        <textarea type="text" id="input-descricao" placeholde="Digite a descricao:"> </textarea>
-        <button id="botao-concluir-tarefa" >Adicionar</button>
+        <div class="linha-formulario">
+            <div>
+                <h3>Tarefa:</h3>
+                <input type="text" id="input-nome" placeholder="Digite a tarefa:">
+            </div>
 
+            <div>
+                <h3>Descrição:</h3>
+                <textarea id="input-descricao" placeholder="Digite a descricao:"></textarea>
+            </div>
+        </div>
+
+        <button id="botao-concluir-tarefa">Adicionar</button>
 
     </div>
 
-    <h2><ul id="lista">Lista de Tarefas </ul> </h2>
-     
 
+    <h2><ul id="lista">Lista de Tarefas </ul></h2>
 
 </body>
+
 
