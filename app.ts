@@ -12,34 +12,44 @@ class Tarefa{
     }
 
     renderizar() {
-        const li = document.createElement ('li');
+    const li = document.createElement('li');
 
-        const checkbox = document.createElement ('input');
-        checkbox.type = 'checkbox';
-        checkbox.checked = this.concluida;
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = this.concluida;
 
-        const nomeElemento = document.createElement ('strong')
-        nomeElemento.textContent = this.nome
+    const nomeElemento = document.createElement('strong');
+    nomeElemento.textContent = this.nome;
+    nomeElemento.classList.add('nome-tarefa');
 
-        const visual = () => {
-        nomeElemento.style.textDecoration = this.concluida ? 'line-through' : 'none';
-        nomeElemento.style.color = this.concluida ? 'green' : 'black';
-        };
+    const descricaoElemento = document.createElement('span');
+    descricaoElemento.textContent = this.descricao;
+    descricaoElemento.classList.add('descricao-tarefa');
 
-        visual(); 
+   const dataElemento = document.createElement('span');
+    dataElemento.textContent = this.dataDeCriacao.toLocaleDateString('pt-BR');
+    dataElemento.classList.add('data-tarefa');
 
-        checkbox.addEventListener('change', () => {
+    const visual = () => {
+        nomeElemento.classList.toggle('concluida', this.concluida);
+    };
+
+    visual();
+
+    checkbox.addEventListener('change', () => {
         this.concluida = checkbox.checked;
-        visual(); 
-         });
+        visual();
+    });
 
-        li.appendChild(checkbox);
-        li.appendChild(nomeElemento);
-       
-     return li;
+    li.appendChild(checkbox);
+    li.appendChild(nomeElemento);
+    li.appendChild(descricaoElemento);
+    li.appendChild(dataElemento);
+
+    return li;
+   }
     }
 
- }
 
  const botaoAdicionar = document.getElementById('botao-adicionar-tarefa') as HTMLButtonElement;
  const botaoConcluir = document.getElementById('botao-concluir-tarefa') as HTMLButtonElement;
